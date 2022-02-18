@@ -21,14 +21,14 @@ const Home = () => {
     //   anticipatePin: 1,
     // });
   }, []);
-
+  const [scrollInstance, setscrollInstance] = useState("");
   const [showcontent, setshowcontent] = useState(false);
   const switchOpacity = showcontent ? "1" : "0";
   return (
     <div className="home">
       <Navigation showcontent={showcontent} />
-      <Intro setshowcontent={setshowcontent} />
-      <Scrollimages />
+      <Intro setshowcontent={setshowcontent} scrollInstance={scrollInstance} />
+      <Scrollimages setscrollInstance={setscrollInstance} />
       <About />
       <div style={{ opacity: switchOpacity }} className="home__sidenav">
         <div className="home__sidenav_side_text">section 1</div>

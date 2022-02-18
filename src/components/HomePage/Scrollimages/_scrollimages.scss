@@ -1,6 +1,9 @@
 .none {
   visibility: hidden;
 }
+// .hide {
+//   opacity: 0;
+// }
 .scroll {
   overflow-x: hidden;
   top: 0%;
@@ -39,6 +42,7 @@
 
     &_img_cover {
       position: relative;
+      // background-color: brown;
       width: 50%;
       margin: auto;
       overflow: hidden;
