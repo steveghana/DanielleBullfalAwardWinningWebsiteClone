@@ -7,7 +7,7 @@ function Intro({ setshowcontent }) {
     let scrollContainer = document.querySelector(".scroll");
     gsap.to([".intro_name, .about_btn"], { opacity: 0, duration: 0, y: -29 });
     let tl = gsap.timeline({ defaults: { duration: 1 } });
-    console.log(scrollContainer);
+
     const counter = (num) => {
       if (num <= 0) {
         tl.to(".intro_num", { y: 1000, ease: "power2.inOut" })
@@ -28,25 +28,38 @@ function Intro({ setshowcontent }) {
             setshowcontent(true);
           })
           .then(() => {
-            window.addEventListener(
-              "wheel",
-              () => {
-                gsap.to(".intro", { opacity: 0, duration: 1 }).then(() => {
-                  gsap
-                    .to(".scroll", {
-                      onStart: () => scrollContainer.classList.remove("none"),
-                    })
-                    .then(() => {
-                      gsap.to(".scroll_container", {
-                        opacity: 1,
-                        duration: 1,
-                      });
-                    });
+            window.addEventListener("wheel", () => {
+              const container = document.querySelectorAll(".scroll_wrapper");
+              let index = container.length - 1;
+              const scrolltimeline = gsap.timeline();
+              scrolltimeline
+                .to(".intro", { opacity: 0, duration: 1 })
+                .to(".scroll", {
+                  onStart: () => scrollContainer.classList.remove("none"),
+                })
+                .to(".scroll_container", {
+                  onComplete: () => {
+                    const observer = new IntersectionObserver(
+                      (entries) => {
+                        entries.forEach((entry) => {
+                          if (entry.isIntersecting) {
+                            window.removeEventListener("wheel", true);
+                            gsap.to(".scroll_container", {
+                              opacity: 0,
+                              duration: 2,
+                              ease: "power2",
+                            });
+                          }
+                        });
+                      },
+                      { threshold: 0.4 }
+                    );
+                    observer.observe(container[index]);
+                  },
+                  opacity: 1,
+                  duration: 1,
                 });
-              }
-
-              // false
-            );
+            });
           });
         return;
       }

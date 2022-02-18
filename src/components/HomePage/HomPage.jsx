@@ -4,6 +4,7 @@ import Scrollimages from "./Scrollimages/Scrollimages";
 import { Navigation, Intro } from "./exports";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import About from "./About/About";
 const Home = () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +29,7 @@ const Home = () => {
       <Navigation showcontent={showcontent} />
       <Intro setshowcontent={setshowcontent} />
       <Scrollimages />
+      <About />
       <div style={{ opacity: switchOpacity }} className="home__sidenav">
         <div className="home__sidenav_side_text">section 1</div>
         <div className="home__sidenav__scroll-to-bottom_indicator">

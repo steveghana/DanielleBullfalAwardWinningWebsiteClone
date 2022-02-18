@@ -1,0 +1,13 @@
+.about {
+  pointer-events: none;
+  position: absolute;
+  inset: 0 0 0 0;
+  display: flex;
+  &__container {
+    min-width: 80%;
+    margin: auto;
+    opacity: 0;
+    height: 80vh;
+    background-color: coral;
+  }
+}
