@@ -4,6 +4,22 @@ export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
     el: document.querySelector(".scroll"),
     smooth: true,
   });
+  const container = document.querySelectorAll(".scroll_wrapper");
+  let index = container.length - 1;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            locomotive.scrollTo(1);
+          }, 2000);
+          // observer.unobserve(container[index]);
+        }
+      });
+    },
+    { threshold: 0.75 }
+  );
+  observer.observe(container[index]);
   let scrollContainer = document.querySelector(".scroll");
   locomotive.on("scroll", ScrollTrigger.update);
   ScrollTrigger.scrollerProxy(scrollContainer, {

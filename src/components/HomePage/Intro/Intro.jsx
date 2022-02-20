@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { scroll } from "../Scrollimages/scrollUtility";
 import gsap from "gsap";
+import LocomotiveScroll from "locomotive-scroll";
+import ScrollTrigger from "gsap/ScrollTrigger";
 function Intro({ setshowcontent, scrollInstance }) {
+  console.clear();
+  gsap.registerPlugin(ScrollTrigger);
   let numcount = React.useRef(100);
   const [count, setcount] = useState(100);
   React.useEffect(() => {
-    console.log("function running");
+    scroll(gsap, LocomotiveScroll, ScrollTrigger);
     gsap.to([".intro_name, .about_btn"], { opacity: 0, duration: 0, y: -29 });
     const init = () => {
       const counter = (num) => {
@@ -53,6 +58,7 @@ function Intro({ setshowcontent, scrollInstance }) {
 
 export default Intro;
 function timeLine(setshowcontent, scrollInstance) {
+  let scrollOff = false;
   let tl = gsap.timeline({ defaults: { duration: 1, yoyo: true } });
   let scrollContainer = document.querySelector(".scroll");
 
@@ -74,7 +80,6 @@ function timeLine(setshowcontent, scrollInstance) {
       // setshowcontent(true);
     })
     .then(() => {
-      let scrollOff = false;
       const container = document.querySelectorAll(".scroll_wrapper");
       let index = container.length - 1;
       const observer = new IntersectionObserver(
@@ -91,10 +96,14 @@ function timeLine(setshowcontent, scrollInstance) {
                   pointerEvents: "none",
                 })
                 .then(() => {
-                  gsap.to(".about__container", { opacity: 1, duration: 1 });
-                  // .then(() => {});
-
                   timeLine();
+                  gsap
+                    .to(".intro", { opacity: 1, duration: 1 })
+                    .then(".scroll", {
+                      onStart: () => scrollContainer.classList.add("none"),
+                    });
+                  // gsap.to(".about__container", { opacity: 1, duration: 1 });
+
                   return;
                 });
             }
@@ -103,7 +112,8 @@ function timeLine(setshowcontent, scrollInstance) {
         { threshold: 0.74 }
       );
       observer.observe(container[index]);
-      window.addEventListener("wheel", () => {
+      const scrollInit = () => {
+        console.log(scrollOff);
         const scrolltimeline = gsap.timeline();
         scrolltimeline
           .to(".intro", { opacity: 0, duration: 1 })
@@ -119,7 +129,12 @@ function timeLine(setshowcontent, scrollInstance) {
               duration: 1,
             });
           });
-      });
+      };
+      if (scrollOff) {
+        window.removeEventListener("wheel", scrollInit, true);
+      } else {
+        window.addEventListener("wheel", scrollInit);
+      }
     });
   return;
 }

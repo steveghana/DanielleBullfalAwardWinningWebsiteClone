@@ -9,9 +9,9 @@ import a4 from "../../../img/phhyy.png";
 import { scroll } from "./scrollUtility";
 function Scrollimages({}) {
   console.clear();
-  gsap.registerPlugin(ScrollTrigger);
+  // gsap.registerPlugin(ScrollTrigger);
   React.useEffect(() => {
-    scroll(gsap, LocomotiveScroll, ScrollTrigger);
+    // scroll(gsap, LocomotiveScroll, ScrollTrigger);
   }, []);
   const open = (e) => {
     [...document.querySelectorAll(".scroll_wrapper_img_cover")]
