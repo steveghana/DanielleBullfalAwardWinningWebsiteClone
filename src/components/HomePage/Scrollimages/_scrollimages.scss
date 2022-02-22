@@ -11,13 +11,24 @@
   position: absolute;
   scroll-behavior: smooth;
   scroll-snap-type: proximity;
-  overflow-y: scroll;
+  // overflow-y: scroll;
+  // height: 100vh;
+  flex: 1;
   &_container {
-    opacity: 0;
+    // opacity: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
+    .content {
+      display: none;
+      &_item {
+        height: 100vh;
+        width: 1399px;
+        background-color: burlywood;
+        margin: 2rem auto;
+      }
+    }
   }
   &_wrapper {
     height: calc(100vh + 300px);
@@ -47,6 +58,7 @@
       margin: auto;
       overflow: hidden;
       height: 500px;
+
       &_text_wrapper {
         position: absolute;
         top: 0px;
