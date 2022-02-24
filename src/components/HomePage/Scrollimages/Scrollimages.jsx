@@ -8,6 +8,9 @@ import a3 from "../../../img/impressive_elegance_card (3).png";
 import a4 from "../../../img/phhyy.png";
 import { scroll } from "./scrollUtility";
 function Scrollimages() {
+  const clicking = (e) => {
+    console.log(e.target);
+  };
   console.clear();
   const obj = ["a", "b", "c", "d"];
   const imgArray = [a1, a2, a3, a4];
@@ -15,7 +18,7 @@ function Scrollimages() {
     <div data-scroll-section="" className="scroll none">
       <div className="scroll_container">
         {imgArray.map((img, i) => (
-          <div key={i} className="scroll_wrapper">
+          <div id={i} key={i} className="scroll_wrapper">
             <div className="scroll_wrapper_text">
               <div
                 data-scroll-speed="0"
@@ -30,7 +33,9 @@ function Scrollimages() {
                   the yes
                 </div>
               </div>
-              <img src={img} alt="" />
+              <a href={`#${i}`}>
+                <img className="img" src={img} alt="" />
+              </a>
             </div>
           </div>
         ))}

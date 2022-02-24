@@ -1,10 +1,10 @@
 export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
   const sections = document.querySelectorAll(".scroll_wrapper");
-  const locomotive = new LocomotiveScroll({
-    el: document.querySelector(".scroll"),
-    smooth: true,
-    scrollFromAnywhere: true,
-  });
+  // const locomotive = new LocomotiveScroll({
+  //   el: document.querySelector(".scroll"),
+  //   smooth: true,
+  //   scrollFromAnywhere: true,
+  // });
   let observe = true;
   const container = document.querySelectorAll(".scroll_wrapper");
   let clickToWidScreen = () => {
@@ -40,7 +40,7 @@ export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
             //     duration: 1,
             //   })
             //   .then(() => {
-            locomotive.scrollTo(1);
+            // locomotive.scrollTo(1);
             gsap.to(el, { display: "none" });
             // });
           });
@@ -106,7 +106,7 @@ export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
               return;
             });
           setTimeout(() => {
-            locomotive.scrollTo(1, { duration: 0 });
+            // locomotive.scrollTo(1, { duration: 0 });
           }, 2000);
           // observer.unobserve(container[index]);
         }
@@ -120,13 +120,13 @@ export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
   //   observer.observe(container[index]);
   // }
   let scrollContainer = document.querySelector(".scroll");
-  locomotive.on("scroll", ScrollTrigger.update);
+  // locomotive.on("scroll", ScrollTrigger.update);
   ScrollTrigger.scrollerProxy(scrollContainer, {
-    scrollTop(value) {
-      return arguments.length
-        ? locomotive.scrollTo(value, 0, 0)
-        : locomotive.scroll.instance.scroll.y;
-    },
+    // scrollTop(value) {
+    //   return arguments.length
+    //     ? locomotive.scrollTo(value, 0, 0)
+    //     : locomotive.scroll.instance.scroll.y;
+    // },
     getBoundingClientRect() {
       return {
         top: 0,
