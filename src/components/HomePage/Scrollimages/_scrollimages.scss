@@ -4,12 +4,19 @@
 .scale {
   width: 100% !important;
   height: 600px !important;
-  transition: all 1s;
 }
-
-// .hide {
-//   opacity: 0;
-// }
+.hide {
+  opacity: 0;
+}
+.move {
+  transform: translateY(80px);
+  top: 60px;
+  margin: auto;
+  left: 0% !important;
+}
+.moveOverlay {
+  transform: translate(0px, 100px);
+}
 .scroll {
   overflow-x: hidden;
   top: 0%;
@@ -26,6 +33,9 @@
     flex-direction: column;
     width: 100%;
     // height: 100%;
+    .showcontent {
+      display: block !important;
+    }
     .content {
       display: none;
       &_item {
@@ -38,7 +48,7 @@
   }
   &_wrapper {
     height: calc(100vh + 300px);
-    margin-top: 13rem;
+    margin-top: 9rem;
     width: 100%;
     flex: none;
     text-align: center;
@@ -49,7 +59,7 @@
         font-family: $stylish-header;
         color: rgb(255, 255, 255);
         position: absolute;
-        margin: auto;
+        margin: 5rem auto 0rem auto;
         top: 0px;
         left: 0%;
         width: 100vw;
@@ -61,6 +71,7 @@
       position: relative;
       transition: all 1s;
       pointer-events: all;
+      margin-top: 5rem !important;
       // background-color: brown;
       width: 50%;
       margin: auto;

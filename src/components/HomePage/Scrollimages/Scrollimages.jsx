@@ -6,12 +6,8 @@ import a1 from "../../../img/averie-woodard-4nulm-JUYFo-unsplash 1.png";
 import a2 from "../../../img/Group.png";
 import a3 from "../../../img/impressive_elegance_card (3).png";
 import a4 from "../../../img/phhyy.png";
-import { scroll } from "./scrollUtility";
+
 function Scrollimages() {
-  const clicking = (e) => {
-    console.log(e.target);
-  };
-  console.clear();
   const obj = ["a", "b", "c", "d"];
   const imgArray = [a1, a2, a3, a4];
   return (
@@ -40,8 +36,10 @@ function Scrollimages() {
           </div>
         ))}
         <div className="content">
-          {obj.map((item) => (
-            <div className="content_item">item</div>
+          {obj.map((item, i) => (
+            <div key={i} className="content_item">
+              item
+            </div>
           ))}
         </div>
       </div>

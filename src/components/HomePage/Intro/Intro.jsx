@@ -8,7 +8,7 @@ function Intro({ setshowcontent, scrollInstance }) {
   console.clear();
   gsap.registerPlugin(ScrollTrigger);
   let numcount = React.useRef(100);
-  const [count, setcount] = useState(100);
+  const [count] = useState(100);
   React.useEffect(() => {
     scroll(gsap, LocomotiveScroll, ScrollTrigger);
     gsap.to([".intro_name, .about_btn"], { opacity: 0, duration: 0, y: -29 });
