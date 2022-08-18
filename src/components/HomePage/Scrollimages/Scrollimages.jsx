@@ -1,7 +1,7 @@
 import React from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import LocomotiveScroll from "locomotive-scroll";
+// import gsap from "gsap";
+// import ScrollTrigger from "gsap/ScrollTrigger";
+// import LocomotiveScroll from "locomotive-scroll";
 import a1 from "../../../img/averie-woodard-4nulm-JUYFo-unsplash 1.png";
 import a2 from "../../../img/Group.png";
 import a3 from "../../../img/impressive_elegance_card (3).png";

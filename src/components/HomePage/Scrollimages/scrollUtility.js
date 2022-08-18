@@ -68,7 +68,6 @@ export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
               pointerEvents: "none",
             })
             .then(() => {
-              // timeLine();
               gsap.to(".about__container", { opacity: 1, duration: 1 });
               gsap.to(".intro", { opacity: 1, duration: 1 }).to(".scroll", {
                 onStart: () => scrollContainer.classList.add("none"),
@@ -77,9 +76,8 @@ export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
               return;
             });
           setTimeout(() => {
-            // locomotive.scrollTo(1, { duration: 0 });
+            locomotive.scrollTo(1, { duration: 0 });
           }, 2000);
-          // console.log(container[1]);
           observer.unobserve(container[index]);
         }
       });
@@ -92,22 +90,22 @@ export const scroll = (gsap, LocomotiveScroll, ScrollTrigger) => {
   //
   let scrollContainer = document.querySelector(".scroll");
   locomotive.on("scroll", ScrollTrigger.update);
-  // ScrollTrigger.scrollerProxy(scrollContainer, {
-  //   scrollTop(value) {
-  //     return arguments.length
-  //       ? locomotive.scrollTo(value, 0, 0)
-  //       : locomotive.scroll.instance.scroll.y;
-  //   },
-  //   getBoundingClientRect() {
-  //     return {
-  //       top: 0,
-  //       left: 0,
-  //       width: window.innerWidth,
-  //       height: window.innerHeight,
-  //     };
-  //   },
-  //   pinType: scrollContainer.style.transform ? "transform" : "fixed",
-  // });
+  ScrollTrigger.scrollerProxy(scrollContainer, {
+    scrollTop(value) {
+      return arguments.length
+        ? locomotive.scrollTo(value, 0, 0)
+        : locomotive.scroll.instance.scroll.y;
+    },
+    getBoundingClientRect() {
+      return {
+        top: 0,
+        left: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    },
+    pinType: scrollContainer.style.transform ? "transform" : "fixed",
+  });
   sections.forEach((item) => {
     let cover = item.querySelector(".scroll_wrapper_img_cover");
     gsap.to(cover, {
@@ -162,7 +160,7 @@ export function timeLine(gsap) {
     .fromTo(
       ".page_description",
       { opacity: 0 },
-      { y: 300 + window.innerHeight, stagger: 0.6, opacity: 1 }
+      { y: window.innerHeight, stagger: 0.6, opacity: 1 }
     )
     .to(".chars", {
       ease: "elastic",
@@ -172,30 +170,25 @@ export function timeLine(gsap) {
     })
     .to(".about_btn", { y: 10, opacity: 1 })
     .to([".name1, .name2"], { y: 10, opacity: 1, stagger: 0.35 })
-    .then(() => {})
     .then(() => {
-      const container = document.querySelectorAll(".scroll_wrapper");
-      let index = container.length - 1;
-      // const observer = new IntersectionObserver(
-      //   (entries) => {
-      //     entries.forEach((entry) => {
-      //       if (entry.isIntersecting) {
-      //       }
-      //     });
-      //   },
-      //   { threshold: 0.74 }
-      // );
-      // observer.observe(container[index]);
+      // const container = document.querySelectorAll(".scroll_wrapper");
+      // let index = container.length - 1;
       const scrollInit = () => {
+        console.log("hi");
+
         const scrolltimeline = gsap.timeline();
         scrolltimeline
           .to(".intro", { opacity: 0, duration: 1 })
           .to(".scroll", {
-            onStart: () => scrollContainer.classList.remove("none"),
+            onStart: () => {
+              scrollContainer.classList.remove("none");
+            },
           })
           .then(() => {
             gsap.to(".scroll_container", {
-              // onComplete: () => {},
+              onComplete: () => {
+                scrollContainer.classList.remove("none");
+              },
 
               opacity: 1,
               duration: 1,
